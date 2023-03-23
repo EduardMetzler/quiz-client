@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import routes from "../routes";
+import routes, { paths } from "../routes";
+
+
+import { userStore } from "../store/userStore";
+
 
 
 
 const RegisterPage: React.FC<any> = () => {
+
+  const { firstName, setFirstName, setlastName, setRole } = userStore();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -17,6 +23,8 @@ const RegisterPage: React.FC<any> = () => {
 
 
   });
+
+
 
   const isDisabledpointer = () => {
     return form.password === form.passwordConfirmation && form.password.length >= 6 && form.passwordConfirmation.length >= 6 ? false : true
@@ -41,7 +49,13 @@ const RegisterPage: React.FC<any> = () => {
         password: form.password,
 
       }, { withCredentials: true });
-      navigate("/")
+
+      navigate("/dashboard")
+      setFirstName(response.data.user.firstName)
+      setlastName(response.data.user.lastName)
+      // console.log(response.data.user.role)
+      setRole(response.data.user.role)
+
       console.log(response.data)
     } catch (error) {
 
@@ -57,7 +71,7 @@ const RegisterPage: React.FC<any> = () => {
           <div className="w-full overflow-hidden bg-white p-8 shadow-sm dark:bg-gray-800 sm:max-w-md sm:rounded-lg">
             <div className="flex items-center justify-center">
 
-              <Link to={routes[0].path}>
+              <Link to={paths.homePath}>
                 <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gray-50 hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-700">
                   Quiz
                 </div>
@@ -97,7 +111,7 @@ const RegisterPage: React.FC<any> = () => {
 
               <div className="mt-4 flex items-center justify-end">
 
-                <Link to={routes[2].path} className="text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-blue-400">
+                <Link to={paths.loginPath} className="text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-blue-400">
                   Already registered?
                 </Link>
                 <button disabled={isDisabledpointer()} type="submit" className={`ml-4 inline-flex items-center rounded-lg bg-gray-200 p-2 text-xs font-bold text-gray-800 ${isDisabledColor()} `}>Register</button>
