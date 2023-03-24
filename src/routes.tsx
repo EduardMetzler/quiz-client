@@ -19,7 +19,7 @@ const routes: any = [
     path: paths.homePath,
     element: <HomePage />,
     isProtected: false,
-    redirectPath: paths.homePath,
+    redirectPath: null,
     id: "HomePage"
   },
   {
@@ -40,21 +40,21 @@ const routes: any = [
     path: paths.dashboardPath,
     element: <DashboardPage />,
     isProtected: false,
-    redirectPath: paths.homePath,
+    redirectPath: null,
     id: "DashboardPage"
   },
   {
     path: paths.userListPath,
     element: <UserListPage />,
     isProtected: false,
-    redirectPath: paths.homePath,
+    redirectPath: null,
     id: "UserListPage"
   },
   {
     path: paths.quizCreatePath,
     element: <QuizCreatePage />,
     isProtected: false,
-    redirectPath: paths.homePath,
+    redirectPath: null,
     id: "QuizCreatePage"
   }
 ];

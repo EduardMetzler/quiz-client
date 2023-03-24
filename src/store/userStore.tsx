@@ -1,5 +1,5 @@
 import create from "zustand";
-import { UserListState, UserState, OneUserOfListState } from "../interface/interface";
+import { UserListState, UserState, isLoginedState } from "../interface/interface";
 
 
 export const userStore = create<UserState>((set) => ({
@@ -37,4 +37,14 @@ export const allUserStore = create<UserListState>((set) => ({
 
 }));
 
-// export default userStore;
+export const isLogined = create<isLoginedState>((set) => ({
+    isAuthf: undefined,
+    setIsAuth: (data) =>
+        set((state) => ({
+            ...state,
+            data
+        })),
+
+
+
+}));

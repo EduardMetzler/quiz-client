@@ -25,3 +25,13 @@ export interface UserListState {
     allUsers: OneUserOfListState[]
     setAllUsers: (allUsers: OneUserOfListState[]) => void;
 }
+
+export interface isLoginedState {
+    isAuthf: boolean | undefined
+    setIsAuth: (data: boolean) => void;
+}
+
+
+
+
+
