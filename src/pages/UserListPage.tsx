@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { allUserStore } from "../store/userStore";
+import { allUserStore, userStore } from "../store/userStore";
 import { Link, useNavigate } from "react-router-dom";
+import { paths } from '../routes';
 
 
 
@@ -9,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const UserListPage: React.FC<any> = () => {
+    const role = userStore(state => state.role)
 
     const allUsers = allUserStore(state => state.allUsers)
     const setAllUsers = allUserStore(state => state.setAllUsers)
@@ -19,17 +21,29 @@ const UserListPage: React.FC<any> = () => {
 
 
     useEffect(() => {
-        axios.defaults.withCredentials = true;
-        axios.get(`http://localhost:4000/user/userList`).then((data) => {
+        if (role !== "admin") {
+            console.log(role)
 
-            console.log(data.data.allUsers)
-            setAllUsers(data.data.allUsers)
-            console.log(allUsers)
-        }).catch((response) => {
-            navigate("/")
 
-        })
+
+            navigate(paths.loginPath)
+
+        } else {
+            axios.defaults.withCredentials = true;
+            axios.get(`http://localhost:4000/user/userList`).then((data) => {
+
+                console.log(data.data.allUsers)
+                setAllUsers(data.data.allUsers)
+                console.log(allUsers)
+            }).catch((response) => {
+                navigate("/")
+
+            })
+        }
+
     }, [])
+
+
 
     return (
         <>

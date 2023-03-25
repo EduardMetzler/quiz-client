@@ -25,6 +25,12 @@ const AdminDashboard: React.FC<any> = () => {
             </Link>
 
         </div>
+        <div>
+            <Link to={paths.quizCreatePath} className="">
+                All Quiz List
+            </Link>
+
+        </div>
 
 
     </>);

@@ -10,11 +10,7 @@ const HomePage: React.FC<any> = () => {
     <>
 
       Home
-      <div>  fbfg</div>
-      <div>  fbfg</div>
-      <div>  fbfg</div>
-      <div>  fbfg</div>
-      <div>  fbfg</div>
+
 
 
 

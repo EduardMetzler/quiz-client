@@ -46,7 +46,10 @@ const RegisterPage: React.FC<any> = () => {
       setFirstName(response.data.user.firstName)
       setlastName(response.data.user.lastName)
       setRole(response.data.user.role)
+      console.log(response)
       setIsAuthenticate(true)
+      console.log(role, firstName, lastName)
+
 
       navigate("/dashboard")
       console.log(response.data)

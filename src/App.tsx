@@ -60,28 +60,30 @@ function App() {
     <BrowserRouter>
       <Navbar />
 
-      <div>we</div>  <div>werer</div>  <div>dew</div>
-
-      {
-        isAuthenticate === undefined ? "loading" : (
-
-          <Routes>
 
 
-            {routes.map((route: any) => {
-              return route.isProtected ? (
-                isAuthenticate ? <Route
-                  key={route.id}
-                  path={route.path}
-                  element={<Navigate to={route.redirectPath} replace={true} />}
-                /> : <Route key={route.id} path={route.path} element={route.element} />
-              ) : (
-                <Route key={route.id} path={route.path} element={route.element} />
-              );
-            })}
-          </Routes>
-        )
-      }
+      <div className='mt-20'>
+        {
+          isAuthenticate === undefined ? "loading" : (
+
+            <Routes>
+
+
+              {routes.map((route: any) => {
+                return route.isProtected ? (
+                  isAuthenticate ? <Route
+                    key={route.id}
+                    path={route.path}
+                    element={<Navigate to={route.redirectPath} replace={true} />}
+                  /> : <Route key={route.id} path={route.path} element={route.element} />
+                ) : (
+                  <Route key={route.id} path={route.path} element={route.element} />
+                );
+              })}
+            </Routes>
+          )
+        }
+      </div>
       {/* <Routes>
         {routes.map((route: any) => {
           return route.isProtected ? (
