@@ -16,8 +16,7 @@ export interface OneUserOfListState {
     setlastName: (name: string) => void;
     _id: string;
     setId: (_id: string) => void;
-    // role?: string;
-    // setRole: (name: string) => void;
+
 
 }
 
@@ -27,8 +26,8 @@ export interface UserListState {
 }
 
 export interface isLoginedState {
-    isAuthf: boolean | undefined
-    setIsAuth: (data: boolean) => void;
+    isAuthenticate: boolean | undefined
+    setIsAuthenticate: (data: boolean) => void;
 }
 
 

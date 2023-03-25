@@ -9,7 +9,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const UserListPage: React.FC<any> = () => {
-    const { allUsers, setAllUsers } = allUserStore();
+
+    const allUsers = allUserStore(state => state.allUsers)
+    const setAllUsers = allUserStore(state => state.setAllUsers)
+
     const navigate = useNavigate();
 
 
@@ -18,16 +21,13 @@ const UserListPage: React.FC<any> = () => {
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios.get(`http://localhost:4000/user/userList`).then((data) => {
-            // setFirstName(data.data.user.firstName)
-            // setlastName(data.data.user.lastName)
-            // // console.log(response.data.user.role)
-            // setRole(data.data.user.role)
+
             console.log(data.data.allUsers)
             setAllUsers(data.data.allUsers)
             console.log(allUsers)
         }).catch((response) => {
             navigate("/")
-            // console.log(response.response.data.message)
+
         })
     }, [])
 

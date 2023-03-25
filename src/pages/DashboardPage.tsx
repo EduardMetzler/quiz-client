@@ -4,12 +4,14 @@ import axios from 'axios';
 
 import AdminDashboard from '../components/dashboards/AdminDashboard';
 import UserDashboard from '../components/dashboards/UserDashboard';
-import { userStore } from "../store/userStore";
+import { isLogined, userStore } from "../store/userStore";
 import { useNavigate } from 'react-router-dom';
 
 const DashboardPage: React.FC<any> = () => {
 
     const { firstName, setFirstName, role, setlastName, setRole } = userStore();
+    const setIsAuthenticate = isLogined(state => state.setIsAuthenticate)
+
     const navigate = useNavigate();
 
 
@@ -18,12 +20,14 @@ const DashboardPage: React.FC<any> = () => {
         axios.get(`http://localhost:4000/dashboard`).then((data) => {
             setFirstName(data.data.user.firstName)
             setlastName(data.data.user.lastName)
-            // console.log(response.data.user.role)
+
             setRole(data.data.user.role)
             console.log(data)
         }).catch((response) => {
+            // console.log(response)
+            setIsAuthenticate(false)
             navigate("/")
-            // console.log(response.response.data.message)
+
         })
     }, [])
 

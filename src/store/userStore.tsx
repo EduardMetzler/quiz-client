@@ -38,11 +38,12 @@ export const allUserStore = create<UserListState>((set) => ({
 }));
 
 export const isLogined = create<isLoginedState>((set) => ({
-    isAuthf: undefined,
-    setIsAuth: (data) =>
+
+    isAuthenticate: undefined,
+    setIsAuthenticate: (isAuthenticate) =>
         set((state) => ({
             ...state,
-            data
+            isAuthenticate
         })),
 
 

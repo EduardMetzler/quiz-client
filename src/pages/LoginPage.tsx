@@ -1,12 +1,14 @@
+import axios from 'axios';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
-import routes, { paths } from "../routes";
-import { userStore } from "../store/userStore";
+import { paths } from "../routes";
+import { isLogined, userStore } from "../store/userStore";
 
 
 
 const RegisterPage: React.FC<any> = () => {
+  const setIsAuthenticate = isLogined(state => state.setIsAuthenticate)
+  const isAuthenticate = isLogined(state => state.isAuthenticate)
   const { firstName, setFirstName, lastName, setlastName, role, setRole } = userStore();
   const navigate = useNavigate();
 
@@ -43,8 +45,8 @@ const RegisterPage: React.FC<any> = () => {
       }, { withCredentials: true });
       setFirstName(response.data.user.firstName)
       setlastName(response.data.user.lastName)
-      // console.log(response.data.user.role)
       setRole(response.data.user.role)
+      setIsAuthenticate(true)
 
       navigate("/dashboard")
       console.log(response.data)
