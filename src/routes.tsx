@@ -4,6 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import UserListPage from "./pages/UserListPage";
 import QuizCreatePage from "./pages/QuizCreatePage";
+import AllQuizMaterialPage from "./pages/AllQuizMaterial";
+import OneQuizMaterialPage from "./pages/OneQuizMaterialPage";
 
 export const paths = {
   homePath: "/",
@@ -11,7 +13,11 @@ export const paths = {
   loginPath: "/login",
   dashboardPath: "/dashboard",
   userListPath: "/userList",
-  quizCreatePath: "/quizCreate"
+  quizCreatePath: "/quizCreate",
+  allQuizMaterialsPath: "/allQuizMaterials",
+  oneQuizMaterialsPath: "/allQuizMaterials/:id"
+
+
 };
 
 const routes: any = [
@@ -56,6 +62,20 @@ const routes: any = [
     isProtected: false,
     redirectPath: null,
     id: "QuizCreatePage"
+  },
+  {
+    path: paths.allQuizMaterialsPath,
+    element: <AllQuizMaterialPage />,
+    isProtected: false,
+    redirectPath: null,
+    id: "AllQuizMaterialPage"
+  },
+  {
+    path: paths.oneQuizMaterialsPath,
+    element: <OneQuizMaterialPage />,
+    isProtected: false,
+    redirectPath: null,
+    id: "oneQuizMaterialPage"
   }
 ];
 
